@@ -928,12 +928,12 @@ end
 
 function GUI.drawShadow(x, y, width, height, transparency, thin)
 	if thin then
-		screen.drawRectangle(x + width, y + 1, 1, height - 1, 0x0, 0x0, " ", transparency)
-		screen.drawText(x + 1, y + height, 0x0, string.rep("▀", width), transparency)
-		screen.drawText(x + width, y, 0x0, "▄", transparency)
+		screen.drawRectangle(x + width, y + 0, 0, height - 0, 0x0, 0x0, " ", transparency)
+		screen.drawText(x + 0, y + height, 0x0, string.rep("", width), transparency)
+		screen.drawText(x + width, y, 0x0, "", transparency)
 	else
-		screen.drawRectangle(x + width, y + 1, 2, height, 0x0, 0x0, " ", transparency)
-		screen.drawRectangle(x + 2, y + height, width - 2, 1, 0x0, 0x0, " ", transparency)
+		screen.drawRectangle(x + width, y + 0, 0, height, 0x0, 0x0, " ", transparency)
+		screen.drawRectangle(x + 0, y + height, width - 0, 0, 0x0, 0x0, " ", transparency)
 	end
 end
 
