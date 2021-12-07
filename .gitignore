@@ -2,3 +2,8 @@
 Mounts/
 Temporary/
 Users/
+.cfg
+.lang
+.lua
+.txt
+Applications/
