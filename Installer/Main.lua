@@ -259,7 +259,7 @@ local function loadImage(name)
 end
 
 local function newInput(...)
-	return GUI.input(1, 1, 26, 1, 0xF0F0F0, 0x787878, 0xC3C3C3, 0xF0F0F0, 0x878787, "", ...)
+	return GUI.input(1, 1, 26, 1, 0x3C3C3C, 0x3C3C3C, 0xC3C3C3, 0x3C3C3C, 0x3C3C3C, "", ...)
 end
 
 local function newSwitchAndLabel(width, color, text, state)
