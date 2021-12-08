@@ -15,9 +15,9 @@
 	used = "исп.",
 	setup = "Профиль пользователя",
 	customize = "Настройка загрузок",
-	flashing = "Прошивка EEPROM...",
+	flashing = "Прошивка BIOS...",
 	creating = "Создание профиля пользователя...",
 	installing = "Установка",
-	installed = "MineOS установлена. Наслаждайтесь!",
+	installed = "Windows готова к использованию.",
 	reboot = "Перезагрузить",
 }
