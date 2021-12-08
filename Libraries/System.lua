@@ -36,7 +36,7 @@ local desktopMenu
 local desktopMenuLayout
 local desktopIconField
 local desktopBackground
-local desktopBackgroundColor = 0x4169E1
+local desktopBackgroundColor = 0x1E1E1E
 local desktopBackgroundWallpaperX
 local desktopBackgroundWallpaperY
 
@@ -44,7 +44,7 @@ local desktopBackgroundWallpaperY
 local iconCache = {
 	archive = image.load(paths.system.icons .. "Archive.pic"),
 	directory = image.load(paths.system.icons .. "Folder.pic"),
-	fileNotExists = image.load(paths.system.icons .. "Script.pic"),
+	fileNotExists = image.load(paths.system.icons .. "FileNotExists.pic"),
 	application = image.load(paths.system.icons .. "Application.pic"),
 	script = image.load(paths.system.icons .. "Script.pic"),
 }
@@ -73,7 +73,7 @@ end
 
 function system.getDefaultUserSettings()
 	return {
-		localizationLanguage = "Russian",
+		localizationLanguage = "English",
 
 		timeFormat = "%d %b %Y %H:%M:%S",
 		timeRealTimestamp = true,
@@ -95,21 +95,21 @@ function system.getDefaultUserSettings()
 		interfaceScreensaverDelay = 20,
 		
 		interfaceTransparencyEnabled = true,
-		interfaceTransparencyDock = 0,
-		interfaceTransparencyMenu = 0,
-		interfaceTransparencyContextMenu = 0,
+		interfaceTransparencyDock = 0.4,
+		interfaceTransparencyMenu = 0.2,
+		interfaceTransparencyContextMenu = 0.2,
 		interfaceBlurEnabled = false,
-		interfaceBlurRadius = 0,
-		interfaceBlurTransparency = 0,
+		interfaceBlurRadius = 3,
+		interfaceBlurTransparency = 0.6,
 
-		interfaceColorDesktopBackground = 0x4D4D4D,
-		interfaceColorDock = 0x808080,
-		interfaceColorMenu = 0x000000,
+		interfaceColorDesktopBackground = 0x1E1E1E,
+		interfaceColorDock = 0xE1E1E1,
+		interfaceColorMenu = 0xF0F0F0,
 		interfaceColorDropDownMenuSeparator = 0xA5A5A5,
 		interfaceColorDropDownMenuDefaultBackground = 0xFFFFFF,
 		interfaceColorDropDownMenuDefaultText = 0x2D2D2D,
 
-		filesShowExtension = true,
+		filesShowExtension = false,
 		filesShowHidden = false,
 		filesShowApplicationIcon = true,
 
@@ -121,7 +121,9 @@ function system.getDefaultUserSettings()
 		tasks = {},
 		dockShortcuts = {
 			filesystem.path(paths.system.applicationAppMarket),
+			filesystem.path(paths.system.applicationMineCodeIDE),
 			filesystem.path(paths.system.applicationFinder),
+			filesystem.path(paths.system.applicationPictureEdit),
 			filesystem.path(paths.system.applicationSettings),
 		},
 		extensions = {
@@ -1926,9 +1928,9 @@ end
 local function menuWidgetDraw(object)
 	if object.selected then
 		object.textColor = 0xFFFFFF
-		screen.drawRectangle(object.x - 1, object.y, object.width + 2, 1, 0xFFFFFF, object.textColor, " ")
+		screen.drawRectangle(object.x - 1, object.y, object.width + 2, 1, 0x3366CC, object.textColor, " ")
 	else
-		object.textColor = 0xFFFFFF
+		object.textColor = 0x0
 	end
 
 	object.drawContent(object)
@@ -2406,7 +2408,7 @@ function system.updateDesktop()
 
 		for y = dockContainer.y + dockContainer.height - 1, dockContainer.y + dockContainer.height - 4, -1 do
 			screen.drawText(xPos, y, color, "◢", userSettings.interfaceTransparencyEnabled and currentDockTransparency)
-			screen.drawRectangle(xPos + 1, y, currentDockWidth, 1, color, 0x000000, " ", userSettings.interfaceTransparencyEnabled and currentDockTransparency)
+			screen.drawRectangle(xPos + 1, y, currentDockWidth, 1, color, 0xFFFFFF, " ", userSettings.interfaceTransparencyEnabled and currentDockTransparency)
 			screen.drawText(xPos + currentDockWidth + 1, y, color, "◣", userSettings.interfaceTransparencyEnabled and currentDockTransparency)
 
 			currentDockTransparency, currentDockWidth, xPos = currentDockTransparency + 0.08, currentDockWidth - 2, xPos + 1
@@ -2422,14 +2424,42 @@ function system.updateDesktop()
 
 	desktopMenu = workspace:addChild(GUI.menu(1, 1, workspace.width, 0x0, 0x696969, 0x3366CC, 0xFFFFFF))
 	
-	local MineOSContextMenu = desktopMenu:addContextMenuItem("ПУСК", 0xFFFFFF)
+	local MineOSContextMenu = desktopMenu:addContextMenuItem("MineOS", 0x000000)
 	MineOSContextMenu:addItem(localization.aboutSystem).onTouch = function()
 		local container = GUI.addBackgroundContainer(workspace, true, true, localization.aboutSystem)
 		container.layout:removeChildren()
 		
 		local lines = {
-			"Windows EFI",
-			"Slacoblochina 2021 мод "
+			"MineOS",
+			"Copyright © 2014-" .. os.date("%Y", system.getTime()),
+			" ",
+			"Developers:",
+			" ",
+			"Igor Timofeev, vk.com/id7799889",
+			"Gleb Trifonov, vk.com/id88323331",
+			"Yakov Verevkin, vk.com/id60991376",
+			"Alexey Smirnov, vk.com/id23897419",
+			"Timofey Shestakov, vk.com/id113499693",
+			" ",
+			"UX-advisers:",
+			" ",
+			"Nikita Yarichev, vk.com/id65873873",
+			"Vyacheslav Sazonov, vk.com/id21321257",
+			"Michail Prosin, vk.com/id75667079",
+			"Dmitrii Tiunov, vk.com/id151541414",
+			"Egor Paliev, vk.com/id83795932",
+			"Maxim Pakin, vk.com/id100687922",
+			"Andrey Kakoito, vk.com/id201043162",
+			"Maxim Omelaenko, vk.com/id54662296",
+			"Konstantin Mayakovskiy, vk.com/id10069748",
+			"Ruslan Isaev, vk.com/id181265169",
+			"Eugene8388608, vk.com/id287247631",
+			" ",
+			"Translators:",
+			" ",
+			"06Games, github.com/06Games",
+			"Xenia Mazneva, vk.com/id5564402",
+			"Yana Dmitrieva, vk.com/id155326634",
 		}
 
 		local textBox = container.layout:addChild(GUI.textBox(1, 1, container.layout.width, #lines, nil, 0xB4B4B4, lines, 1, 0, 0))
@@ -2488,7 +2518,7 @@ function system.updateDesktop()
 
 	local RAMWidget, RAMPercent = system.addMenuWidget(system.menuWidget(16))
 	RAMWidget.drawContent = function()
-		local text = "Память -> " .. math.ceil(RAMPercent * 100) .. "% "
+		local text = "RAM: " .. math.ceil(RAMPercent * 100) .. "% "
 		local barWidth = RAMWidget.width - #text
 		local activeWidth = math.ceil(RAMPercent * barWidth)
 
