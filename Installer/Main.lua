@@ -512,7 +512,8 @@ addStage(function()
 
 	addImage(0, 0, "Settings")
 	addTitle(0xFFFFFF, localization.customize)
-
+	layout:addChild(screensaversSwitchAndLabel)
+	layout:addChild(applicationsSwitchAndLabel)
 	layout:addChild(wallpapersSwitchAndLabel)
 	layout:addChild(localizationsSwitchAndLabel)
 end)
