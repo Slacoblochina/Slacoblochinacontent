@@ -34,7 +34,7 @@ module.onTouch = function()
 	end
 
 	-- Resolution
-	window.contentLayout:addChild(GUI.text(1, 1, 0xFFFFFF, localization.screenResolution))
+	window.contentLayout:addChild(GUI.text(1, 1, 0x2D2D2D, localization.screenResolution))
 	local resolutionComboBox = window.contentLayout:addChild(GUI.comboBox(1, 1, 36, 3, 0xE1E1E1, 0x696969, 0xD2D2D2, 0xA5A5A5))
 
 	local function setResolution(width, height)

@@ -13,7 +13,7 @@ local userSettings = system.getUserSettings()
 module.name = localization.appearance
 module.margin = 12
 module.onTouch = function()
-	window.contentLayout:addChild(GUI.text(1, 1, 0x2D2D2D, localization.appearanceFiles))
+	window.contentLayout:addChild(GUI.text(1, 1, 0xFFFFFF, localization.appearanceFiles))
 
 	local showExtensionSwitch = window.contentLayout:addChild(GUI.switchAndLabel(1, 1, 36, 8, 0x66DB80, 0xE1E1E1, 0xFFFFFF, 0xA5A5A5, localization.appearanceExtensions .. ":", userSettings.filesShowExtension)).switch
 	local showHiddenFilesSwitch = window.contentLayout:addChild(GUI.switchAndLabel(1, 1, 36, 8, 0x66DB80, 0xE1E1E1, 0xFFFFFF, 0xA5A5A5, localization.appearanceHidden .. ":", userSettings.filesShowHidden)).switch
@@ -23,7 +23,7 @@ module.onTouch = function()
 	
 	window.contentLayout:addChild(GUI.textBox(1, 1, 36, 1, nil, 0xA5A5A5, {localization.appearanceTransparencyInfo}, 1, 0, 0, true, true))
 
-	window.contentLayout:addChild(GUI.text(1, 1, 0x2D2D2D, localization.appearanceColorScheme))
+	window.contentLayout:addChild(GUI.text(1, 1, 0xFFFFFF, localization.appearanceColorScheme))
 
 	local function addColorSelector(key, ...)
 		local c = window.contentLayout:addChild(GUI.colorSelector(1, 1, 36, 1, userSettings[key], ...))
@@ -43,13 +43,13 @@ module.onTouch = function()
 	addColorSelector("interfaceColorDropDownMenuDefaultText", localization.appearanceDropDownDefaultText)
 	addColorSelector("interfaceColorDropDownMenuSeparator", localization.appearanceDropDownSeparator)
 
-	window.contentLayout:addChild(GUI.text(1, 1, 0x2D2D2D, localization.appearanceSize))
+	window.contentLayout:addChild(GUI.text(1, 1, 0xFFFFFF, localization.appearanceSize))
 
 	local iconWidthSlider = window.contentLayout:addChild(GUI.slider(1, 1, 36, 0x66DB80, 0xE1E1E1, 0xFFFFFF, 0xA5A5A5, 8, 16, userSettings.iconWidth, false, localization.appearanceHorizontal .. ": ", ""))
 	local iconHeightSlider = window.contentLayout:addChild(GUI.slider(1, 1, 36, 0x66DB80, 0xE1E1E1, 0xFFFFFF, 0xA5A5A5, 6, 16, userSettings.iconHeight, false, localization.appearanceVertical .. ": ", ""))
 	iconHeightSlider.height = 2
 
-	window.contentLayout:addChild(GUI.text(1, 1, 0x2D2D2D, localization.appearanceSpace))
+	window.contentLayout:addChild(GUI.text(1, 1, 0xFFFFFF, localization.appearanceSpace))
 
 	local iconHorizontalSpaceBetweenSlider = window.contentLayout:addChild(GUI.slider(1, 1, 36, 0x66DB80, 0xE1E1E1, 0xFFFFFF, 0xA5A5A5, 0, 5, userSettings.iconHorizontalSpace, false, localization.appearanceHorizontal .. ": ", ""))
 	local iconVerticalSpaceBetweenSlider = window.contentLayout:addChild(GUI.slider(1, 1, 36, 0x66DB80, 0xE1E1E1, 0xFFFFFF, 0xA5A5A5, 0, 5, userSettings.iconVerticalSpace, false, localization.appearanceVertical .. ": ", ""))

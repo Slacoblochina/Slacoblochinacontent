@@ -12,12 +12,13 @@ local userSettings = system.getUserSettings()
 module.name = localization.wallpaper
 module.margin = 5
 module.onTouch = function()
-	window.contentLayout:addChild(GUI.text(1, 1, 0x2D2D2D, localization.wallpaperWallpaper))
+	window.contentLayout:addChild(GUI.text(1, 1, 0xFFFFFF, localization.wallpaperWallpaper))
 
 	local wallpaperChooser = window.contentLayout:addChild(GUI.filesystemChooser(1, 1, 36, 3, 0xE1E1E1, 0x696969, 0xD2D2D2, 0xA5A5A5, userSettings.interfaceWallpaperPath, localization.open, localization.cancel, localization.wallpaperPath, "/"))
 	wallpaperChooser:setMode(GUI.IO_MODE_OPEN, GUI.IO_MODE_FILE)
 	wallpaperChooser:addExtensionFilter(".pic")
 	wallpaperChooser:addExtensionFilter(".lua")
+	wallpaperChooser:addExtensionFilter(".png")
 	wallpaperChooser.onSubmit = function(path)
 		userSettings.interfaceWallpaperPath = path
 		system.updateWallpaper()
@@ -61,7 +62,7 @@ module.onTouch = function()
 		system.saveUserSettings()
 	end
 
-	window.contentLayout:addChild(GUI.text(1, 1, 0x2D2D2D, localization.wallpaperScreensaver))
+	window.contentLayout:addChild(GUI.text(1, 1, 0xFFFFFF, localization.wallpaperScreensaver))
 
 	local screensaverChooser = window.contentLayout:addChild(GUI.filesystemChooser(1, 1, 36, 3, 0xE1E1E1, 0x696969, 0xD2D2D2, 0xA5A5A5, userSettings.interfaceScreensaverPath, localization.open, localization.cancel, localization.wallpaperScreensaverPath, "/"))
 	screensaverChooser:setMode(GUI.IO_MODE_OPEN, GUI.IO_MODE_FILE)
