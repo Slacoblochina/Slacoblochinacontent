@@ -282,7 +282,7 @@ local function addImage(before, after, name)
 end
 
 local function addStageButton(text)
-	local button = stageButtonsLayout:addChild(GUI.adaptiveRoundedButton(1, 1, 2, 0, 0xC3C3C3, 0x878787, 0xA5A5A5, 0x696969, text))
+	local button = stageButtonsLayout:addChild(GUI.adaptiveRoundedButton(1, 1, 2, 0, 0xC3C3C3, 0x878787, 0xA5A5A5, 0xFFFFFF, text))
 	button.colors.disabled.background = 0xD2D2D2
 	button.colors.disabled.text = 0xB4B4B4
 
@@ -418,7 +418,7 @@ addStage(function()
 	nextButton.disabled = false
 
 	layout:addChild(GUI.object(1, 1, 1, 1))
-	addTitle(0x696969, localization.select)
+	addTitle(0xFFFFFF, localization.select)
 	
 	local diskLayout = layout:addChild(GUI.layout(1, 1, layout.width, 11, 1, 1))
 	diskLayout:setDirection(1, 1, GUI.DIRECTION_HORIZONTAL)
@@ -446,7 +446,7 @@ addStage(function()
 			local disk = diskLayout:addChild(GUI.container(1, 1, 14, diskLayout.height))
 
 			local formatContainer = disk:addChild(GUI.container(1, 1, disk.width, disk.height))
-			formatContainer:addChild(GUI.panel(1, 1, formatContainer.width, formatContainer.height, 0xD2D2D2))
+			formatContainer:addChild(GUI.panel(1, 1, formatContainer.width, formatContainer.height, 0xFFFFFF))
 			formatContainer:addChild(GUI.button(1, formatContainer.height, formatContainer.width, 1, 0xCC4940, 0xE1E1E1, 0x990000, 0xE1E1E1, localization.erase)).onTouch = function()
 				local list, path = proxy.list("/")
 				for i = 1, #list do
@@ -497,7 +497,7 @@ addStage(function()
 	checkUserInputs()
 
 	addImage(0, 0, "User")
-	addTitle(0x696969, localization.setup)
+	addTitle(0xFFFFFF, localization.setup)
 
 	layout:addChild(usernameInput)
 	layout:addChild(passwordInput)
@@ -511,10 +511,9 @@ addStage(function()
 	nextButton.disabled = false
 
 	addImage(0, 0, "Settings")
-	addTitle(0x696969, localization.customize)
+	addTitle(0xFFFFFF, localization.customize)
 
 	layout:addChild(wallpapersSwitchAndLabel)
-	layout:addChild(screensaversSwitchAndLabel)
 	layout:addChild(applicationsSwitchAndLabel)
 	layout:addChild(localizationsSwitchAndLabel)
 end)
@@ -526,12 +525,12 @@ addStage(function()
 	-- Creating user profile
 	layout:removeChildren()
 	addImage(1, 1, "User")
-	addTitle(0x969696, localization.creating)
+	addTitle(0xFFFFFF, localization.creating)
 	workspace:draw()
 
 	-- Renaming if possible
 	if not selectedFilesystemProxy.getLabel() then
-		selectedFilesystemProxy.setLabel("MineOS HDD")
+		selectedFilesystemProxy.setLabel("Windows EFIHDD")
 	end
 
 	local function switchProxy(runnable)
@@ -556,7 +555,7 @@ addStage(function()
 	-- Flashing EEPROM
 	layout:removeChildren()
 	addImage(1, 1, "EEPROM")
-	addTitle(0x969696, localization.flashing)
+	addTitle(0xFFFFFF, localization.flashing)
 	workspace:draw()
 	
 	EEPROMProxy.set(request(EFIURL))
@@ -569,7 +568,7 @@ addStage(function()
 
 	local container = layout:addChild(GUI.container(1, 1, layout.width - 50, 2))
 	local progressBar = container:addChild(GUI.progressBar(1, 1, container.width, 0x228B22, 0xD2D2D2, 0xA5A5A5, 0, true, false))
-	local cyka = container:addChild(GUI.label(1, 2, container.width, 1, 0x969696, "")):setAlignment(GUI.ALIGNMENT_HORIZONTAL_CENTER, GUI.ALIGNMENT_VERTICAL_TOP)
+	local cyka = container:addChild(GUI.label(1, 2, container.width, 1, 0xFFFFFF, "")):setAlignment(GUI.ALIGNMENT_HORIZONTAL_CENTER, GUI.ALIGNMENT_VERTICAL_TOP)
 
 	-- Creating final filelist of things to download
 	local downloadList = {}
