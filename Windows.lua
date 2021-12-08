@@ -108,7 +108,7 @@ local function UIRequire(module)
 	UIRequireCounter = UIRequireCounter + 1
 	
 	-- Title
-	GPUProxy.setForeground(0x42AFF)
+	GPUProxy.setForeground(0x42AFF1)
 	GPUProxy.set(centrize(#title), y, title)
 
 	-- Progressbar
