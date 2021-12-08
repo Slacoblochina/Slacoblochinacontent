@@ -42,7 +42,7 @@ end
 
 local function title()
 	local y = math.floor(screenHeight / 2 - 1)
-	centrizedText(y, 0x4682B4, "Windows")
+	centrizedText(y, 0x42AFF1, "Windows")
 
 	return y + 2
 end
@@ -61,7 +61,7 @@ local function progress(value)
 	local width = 26
 	local x, y, part = centrize(width), title(), math.ceil(width * value)
 	
-	GPUProxy.setForeground(0x878787)
+	GPUProxy.setForeground(0x57B0FF)
 	GPUProxy.set(x, y, string.rep("─", part))
 	GPUProxy.setForeground(0xC3C3C3)
 	GPUProxy.set(x + part, y, string.rep("─", width - part))
