@@ -21,7 +21,7 @@ local repositoryURL = "https://raw.githubusercontent.com/Slacoblochina/Slacobloc
 local installerURL = "Installer/"
 local EFIURL = "EFI/Minified.lua"
 
-local installerPath = "/MineOS installer/"
+local installerPath = "/Windows installer/"
 local installerPicturesPath = installerPath .. "Installer/Pictures/"
 local OSPath = "/"
 
@@ -141,7 +141,7 @@ local function deserialize(text)
 end
 
 -- Clearing screen
-GPUProxy.setBackground(0x000000)
+GPUProxy.setBackground(0x2C0091)
 GPUProxy.fill(1, 1, screenWidth, screenHeight, " ")
 
 -- Searching for appropriate temporary filesystem for storing libraries, images, etc
@@ -231,19 +231,19 @@ workspace:addChild(GUI.panel(1, 1, workspace.width, workspace.height, 0x1E1E1E))
 -- Main installer window
 local window = workspace:addChild(GUI.window(1, 1, 80, 24))
 window.localX, window.localY = math.ceil(workspace.width / 2 - window.width / 2), math.ceil(workspace.height / 2 - window.height / 2)
-window:addChild(GUI.panel(1, 1, window.width, window.height, 0xE1E1E1))
+window:addChild(GUI.panel(1, 1, window.width, window.height, 0x3C3C3C))
 
 -- Top menu
 local menu = workspace:addChild(GUI.menu(1, 1, workspace.width, 0xF0F0F0, 0x787878, 0x3366CC, 0xE1E1E1))
-local installerMenu = menu:addContextMenuItem("MineOS", 0x2D2D2D)
-installerMenu:addItem("Shutdown").onTouch = function()
+local installerMenu = menu:addContextMenuItem("Windows", 0x2D2D2D)
+installerMenu:addItem("Завершение работы").onTouch = function()
 	computer.shutdown()
 end
-installerMenu:addItem("Reboot").onTouch = function()
+installerMenu:addItem("Перезагрузка").onTouch = function()
 	computer.shutdown(true)
 end
 installerMenu:addSeparator()
-installerMenu:addItem("Exit").onTouch = function()
+installerMenu:addItem("Выход").onTouch = function()
 	workspace:stop()
 end
 
@@ -531,7 +531,7 @@ addStage(function()
 
 	-- Renaming if possible
 	if not selectedFilesystemProxy.getLabel() then
-		selectedFilesystemProxy.setLabel("MineOS HDD")
+		selectedFilesystemProxy.setLabel("Windows")
 	end
 
 	local function switchProxy(runnable)
@@ -555,17 +555,17 @@ addStage(function()
 
 	-- Flashing EEPROM
 	layout:removeChildren()
-	addImage(1, 1, "EEPROM")
+	addImage(1, 1, "BIOS")
 	addTitle(0x969696, localization.flashing)
 	workspace:draw()
 	
 	EEPROMProxy.set(request(EFIURL))
-	EEPROMProxy.setLabel("MineOS EFI")
+	EEPROMProxy.setLabel("Windows EFI")
 	EEPROMProxy.setData(selectedFilesystemProxy.address)
 
 	-- Downloading files
 	layout:removeChildren()
-	addImage(3, 2, "Downloading")
+	addImage(3, 2, "Загрузка")
 
 	local container = layout:addChild(GUI.container(1, 1, layout.width - 20, 2))
 	local progressBar = container:addChild(GUI.progressBar(1, 1, container.width, 0x66B6FF, 0xD2D2D2, 0xA5A5A5, 0, true, false))
@@ -655,7 +655,7 @@ addStage(function()
 
 	-- Done info
 	layout:removeChildren()
-	addImage(1, 1, "Done")
+	addImage(1, 1, "Успешно")
 	addTitle(0x969696, localization.installed)
 	addStageButton(localization.reboot).onTouch = function()
 		computer.shutdown(true)
