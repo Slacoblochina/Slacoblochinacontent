@@ -36,7 +36,7 @@ local desktopMenu
 local desktopMenuLayout
 local desktopIconField
 local desktopBackground
-local desktopBackgroundColor = 0x337036
+local desktopBackgroundColor = 0x2C0091
 local desktopBackgroundWallpaperX
 local desktopBackgroundWallpaperY
 
@@ -75,7 +75,7 @@ function system.getDefaultUserSettings()
 	return {
 		localizationLanguage = "Russian",
 
-		timeFormat = "%H:%M:",
+		timeFormat = "Время %H:%M",
 		timeRealTimestamp = true,
 		timeTimezone = 0,
 
@@ -85,8 +85,8 @@ function system.getDefaultUserSettings()
 		networkSignalStrength = 512,
 		networkFTPConnections = {},
 		
-		interfaceWallpaperEnabled = false,
-		interfaceWallpaperPath = paths.system.pictures .. "Space.pic",
+		interfaceWallpaperEnabled = true,
+		interfaceWallpaperPath = paths.system.pictures .. "Windows.pic",
 		interfaceWallpaperMode = 1,
 		interfaceWallpaperBrightness = 0.9,
 
@@ -102,12 +102,12 @@ function system.getDefaultUserSettings()
 		interfaceBlurRadius = 3,
 		interfaceBlurTransparency = 0.6,
 
-		interfaceColorDesktopBackground = 0x337036,
-		interfaceColorDock = 0x888205,
-		interfaceColorMenu = 0x789516,
-		interfaceColorDropDownMenuSeparator = 0x855845,
-		interfaceColorDropDownMenuDefaultBackground = 0xFFFFFF,
-		interfaceColorDropDownMenuDefaultText = 0x167772,
+		interfaceColorDesktopBackground = 0x2C0091,
+		interfaceColorDock = 0xBEBEBE,
+		interfaceColorMenu = 0x696969,
+		interfaceColorDropDownMenuSeparator = 0x1C1C1C,
+		interfaceColorDropDownMenuDefaultBackground = 0x1C1C1C,
+		interfaceColorDropDownMenuDefaultText = 0xFFFFFF,
 
 		filesShowExtension = false,
 		filesShowHidden = false,
@@ -2422,7 +2422,7 @@ function system.updateDesktop()
 
 	desktopMenu = workspace:addChild(GUI.menu(1, 1, workspace.width, 0x0, 0x696969, 0x3366CC, 0xFFFFFF))
 	
-	local MineOSContextMenu = desktopMenu:addContextMenuItem("ПУСК", 0x000000)
+	local MineOSContextMenu = desktopMenu:addContextMenuItem("ПУСК", 0xF0F0F0)
 	MineOSContextMenu:addItem(localization.aboutSystem).onTouch = function()
 		local container = GUI.addBackgroundContainer(workspace, true, true, localization.aboutSystem)
 		container.layout:removeChildren()
@@ -2430,34 +2430,6 @@ function system.updateDesktop()
 		local lines = {
 			"Windows EFI",
 			"Copyright © 2021-" .. os.date("%Y", system.getTime()),
-			" ",
-			"Developers:",
-			" ",
-			"Igor Timofeev, vk.com/id7799889",
-			"Gleb Trifonov, vk.com/id88323331",
-			"Yakov Verevkin, vk.com/id60991376",
-			"Alexey Smirnov, vk.com/id23897419",
-			"Timofey Shestakov, vk.com/id113499693",
-			" ",
-			"UX-advisers:",
-			" ",
-			"Nikita Yarichev, vk.com/id65873873",
-			"Vyacheslav Sazonov, vk.com/id21321257",
-			"Michail Prosin, vk.com/id75667079",
-			"Dmitrii Tiunov, vk.com/id151541414",
-			"Egor Paliev, vk.com/id83795932",
-			"Maxim Pakin, vk.com/id100687922",
-			"Andrey Kakoito, vk.com/id201043162",
-			"Maxim Omelaenko, vk.com/id54662296",
-			"Konstantin Mayakovskiy, vk.com/id10069748",
-			"Ruslan Isaev, vk.com/id181265169",
-			"Eugene8388608, vk.com/id287247631",
-			" ",
-			"Translators:",
-			" ",
-			"06Games, github.com/06Games",
-			"Xenia Mazneva, vk.com/id5564402",
-			"Yana Dmitrieva, vk.com/id155326634",
 		}
 
 		local textBox = container.layout:addChild(GUI.textBox(1, 1, container.layout.width, #lines, nil, 0xB4B4B4, lines, 1, 0, 0))
@@ -2510,21 +2482,6 @@ function system.updateDesktop()
 		local index = screen.getIndex(batteryWidget.x + #batteryWidgetText, 1)
 		for i = 1, 4 do
 			screen.rawSet(index, screen.rawGet(index), i <= pixelPercent and getPercentageColor(batteryWidgetPercent) or 0xD2D2D2, i < 4 and "⠶" or "╸")
-			index = index + 1
-		end
-	end
-
-	local RAMWidget, RAMPercent = system.addMenuWidget(system.menuWidget(16))
-	RAMWidget.drawContent = function()
-		local text = "RAM: " .. math.ceil(RAMPercent * 100) .. "% "
-		local barWidth = RAMWidget.width - #text
-		local activeWidth = math.ceil(RAMPercent * barWidth)
-
-		screen.drawText(RAMWidget.x, 1, RAMWidget.textColor, text)
-		
-		local index = screen.getIndex(RAMWidget.x + #text, 1)
-		for i = 1, barWidth do
-			screen.rawSet(index, screen.rawGet(index), i <= activeWidth and getPercentageColor(1 - RAMPercent) or 0xD2D2D2, "━")
 			index = index + 1
 		end
 	end

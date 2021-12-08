@@ -880,13 +880,15 @@ end
 --------------------------------------------------------------------------------
 
 function GUI.actionButtons(x, y, fatSymbol)
-	local symbol = fatSymbol and "⬤" or "●"
+	local symbol = fatSymbol and "X" or "X"
+	local symbol1 = fatSymbol and "-" or "-"
+	local symbol2 = fatSymbol and "+" or "+"
 	
 	local container = GUI.container(x, y, 5, 1)
 	container.close = container:addChild(GUI.button(1, 1, 1, 1, nil, 0xFF4940, nil, 0x992400, symbol))
-	container.minimize = container:addChild(GUI.button(3, 1, 1, 1, nil, 0xFFB640, nil, 0x996D00, symbol))
-	container.maximize = container:addChild(GUI.button(5, 1, 1, 1, nil, 0x00B640, nil, 0x006D40, symbol))
-
+	container.minimize = container:addChild(GUI.button(5, 1, 1, 1, nil, 0xFFFFFF, nil, 0xFFFFFF, symbol1))
+	container.maximize = container:addChild(GUI.button(3, 1, 1, 1, nil, 0xFFFFFF, nil, 0xFFFFFF, symbol2))
+	
 	return container
 end
 
@@ -928,12 +930,12 @@ end
 
 function GUI.drawShadow(x, y, width, height, transparency, thin)
 	if thin then
-		screen.drawRectangle(x + width, y + 0, 0, height - 0, 0x0, 0x0, " ", transparency)
-		screen.drawText(x + 0, y + height, 0x0, string.rep("", width), transparency)
-		screen.drawText(x + width, y, 0x0, "", transparency)
+		screen.drawRectangle(x + width, y + 1, 1, height - 1, 0x0, 0x0, " ", transparency)
+		screen.drawText(x + 1, y + height, 0x0, string.rep("▀", width), transparency)
+		screen.drawText(x + width, y, 0x0, "▄", transparency)
 	else
-		screen.drawRectangle(x + width, y + 0, 0, height, 0x0, 0x0, " ", transparency)
-		screen.drawRectangle(x + 0, y + height, width - 0, 0, 0x0, 0x0, " ", transparency)
+		screen.drawRectangle(x + width, y + 1, 2, height, 0x0, 0x0, " ", transparency)
+		screen.drawRectangle(x + 2, y + height, width - 2, 1, 0x0, 0x0, " ", transparency)
 	end
 end
 
