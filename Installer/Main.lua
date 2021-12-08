@@ -48,7 +48,7 @@ local function title()
 end
 
 local function status(text, needWait)
-	centrizedText(title(), 0x878787, text)
+	centrizedText(title(), 0xFFFFFF, text)
 
 	if needWait then
 		repeat
@@ -231,7 +231,7 @@ workspace:addChild(GUI.panel(1, 1, workspace.width, workspace.height, 0x2C0091))
 -- Main installer window
 local window = workspace:addChild(GUI.window(1, 1, 80, 24))
 window.localX, window.localY = math.ceil(workspace.width / 2 - window.width / 2), math.ceil(workspace.height / 2 - window.height / 2)
-window:addChild(GUI.panel(1, 1, window.width, window.height, 0xE1E1E1))
+window:addChild(GUI.panel(1, 1, window.width, window.height, 0x3C3C3C))
 
 -- Top menu
 local menu = workspace:addChild(GUI.menu(1, 1, workspace.width, 0xF0F0F0, 0x787878, 0x3366CC, 0xE1E1E1))
@@ -299,7 +299,7 @@ local stages = {}
 local usernameInput = newInput("")
 local passwordInput = newInput("", false, "•")
 local passwordSubmitInput = newInput("", false, "•")
-local usernamePasswordText = GUI.text(1, 1, 0xCC0040, "")
+local usernamePasswordText = GUI.text(1, 1, 0xFFFFFF, "")
 local passwordSwitchAndLabel = newSwitchAndLabel(26, 0x66DB80, "", false)
 
 local wallpapersSwitchAndLabel = newSwitchAndLabel(30, 0xFF4980, "", true)
