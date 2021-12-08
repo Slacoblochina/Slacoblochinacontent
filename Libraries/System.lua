@@ -36,7 +36,7 @@ local desktopMenu
 local desktopMenuLayout
 local desktopIconField
 local desktopBackground
-local desktopBackgroundColor = 0x1E1E1E
+local desktopBackgroundColor = 0x337036
 local desktopBackgroundWallpaperX
 local desktopBackgroundWallpaperY
 
@@ -44,7 +44,7 @@ local desktopBackgroundWallpaperY
 local iconCache = {
 	archive = image.load(paths.system.icons .. "Archive.pic"),
 	directory = image.load(paths.system.icons .. "Folder.pic"),
-	fileNotExists = image.load(paths.system.icons .. "FileNotExists.pic"),
+	fileNotExists = image.load(paths.system.icons .. "Script.pic"),
 	application = image.load(paths.system.icons .. "Application.pic"),
 	script = image.load(paths.system.icons .. "Script.pic"),
 }
@@ -73,9 +73,9 @@ end
 
 function system.getDefaultUserSettings()
 	return {
-		localizationLanguage = "English",
+		localizationLanguage = "Russian",
 
-		timeFormat = "%d %b %Y %H:%M:%S",
+		timeFormat = "%H:%M:",
 		timeRealTimestamp = true,
 		timeTimezone = 0,
 
@@ -94,7 +94,7 @@ function system.getDefaultUserSettings()
 		interfaceScreensaverPath = paths.system.screensavers .. "Space.lua",
 		interfaceScreensaverDelay = 20,
 		
-		interfaceTransparencyEnabled = true,
+		interfaceTransparencyEnabled = false,
 		interfaceTransparencyDock = 0.4,
 		interfaceTransparencyMenu = 0.2,
 		interfaceTransparencyContextMenu = 0.2,
@@ -102,28 +102,26 @@ function system.getDefaultUserSettings()
 		interfaceBlurRadius = 3,
 		interfaceBlurTransparency = 0.6,
 
-		interfaceColorDesktopBackground = 0x1E1E1E,
-		interfaceColorDock = 0xE1E1E1,
-		interfaceColorMenu = 0xF0F0F0,
-		interfaceColorDropDownMenuSeparator = 0xA5A5A5,
+		interfaceColorDesktopBackground = 0x337036,
+		interfaceColorDock = 0x888205,
+		interfaceColorMenu = 0x789516,
+		interfaceColorDropDownMenuSeparator = 0x855845,
 		interfaceColorDropDownMenuDefaultBackground = 0xFFFFFF,
-		interfaceColorDropDownMenuDefaultText = 0x2D2D2D,
+		interfaceColorDropDownMenuDefaultText = 0x167772,
 
 		filesShowExtension = false,
 		filesShowHidden = false,
 		filesShowApplicationIcon = true,
 
-		iconWidth = 12,
+		iconWidth = 10,
 		iconHeight = 6,
 		iconHorizontalSpace = 1,
-		iconVerticalSpace = 1,
+		iconVerticalSpace = 4,
 		
 		tasks = {},
 		dockShortcuts = {
 			filesystem.path(paths.system.applicationAppMarket),
-			filesystem.path(paths.system.applicationMineCodeIDE),
 			filesystem.path(paths.system.applicationFinder),
-			filesystem.path(paths.system.applicationPictureEdit),
 			filesystem.path(paths.system.applicationSettings),
 		},
 		extensions = {
