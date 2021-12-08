@@ -418,7 +418,7 @@ addStage(function()
 	nextButton.disabled = false
 
 	layout:addChild(GUI.object(1, 1, 1, 1))
-	addTitle(0x696969, localization.select)
+	addTitle(0xFFFFFF, localization.select)
 	
 	local diskLayout = layout:addChild(GUI.layout(1, 1, layout.width, 11, 1, 1))
 	diskLayout:setDirection(1, 1, GUI.DIRECTION_HORIZONTAL)
@@ -497,7 +497,7 @@ addStage(function()
 	checkUserInputs()
 
 	addImage(0, 0, "User")
-	addTitle(0x696969, localization.setup)
+	addTitle(0xFFFFFF, localization.setup)
 
 	layout:addChild(usernameInput)
 	layout:addChild(passwordInput)
@@ -511,7 +511,7 @@ addStage(function()
 	nextButton.disabled = false
 
 	addImage(0, 0, "Settings")
-	addTitle(0x696969, localization.customize)
+	addTitle(0xFFFFFF, localization.customize)
 
 	layout:addChild(wallpapersSwitchAndLabel)
 	layout:addChild(screensaversSwitchAndLabel)
@@ -526,12 +526,12 @@ addStage(function()
 	-- Creating user profile
 	layout:removeChildren()
 	addImage(1, 1, "User")
-	addTitle(0x969696, localization.creating)
+	addTitle(0xFFFFFF, localization.creating)
 	workspace:draw()
 
 	-- Renaming if possible
 	if not selectedFilesystemProxy.getLabel() then
-		selectedFilesystemProxy.setLabel("MineOS HDD")
+		selectedFilesystemProxy.setLabel("Windows HDD")
 	end
 
 	local function switchProxy(runnable)
@@ -556,7 +556,7 @@ addStage(function()
 	-- Flashing EEPROM
 	layout:removeChildren()
 	addImage(1, 1, "EEPROM")
-	addTitle(0x969696, localization.flashing)
+	addTitle(0xFFFFFF, localization.flashing)
 	workspace:draw()
 	
 	EEPROMProxy.set(request(EFIURL))
@@ -569,7 +569,7 @@ addStage(function()
 
 	local container = layout:addChild(GUI.container(1, 1, layout.width - 20, 2))
 	local progressBar = container:addChild(GUI.progressBar(1, 1, container.width, 0x66B6FF, 0xD2D2D2, 0xA5A5A5, 0, true, false))
-	local cyka = container:addChild(GUI.label(1, 2, container.width, 1, 0x969696, "")):setAlignment(GUI.ALIGNMENT_HORIZONTAL_CENTER, GUI.ALIGNMENT_VERTICAL_TOP)
+	local cyka = container:addChild(GUI.label(1, 2, container.width, 1, 0xFFFFFF, "")):setAlignment(GUI.ALIGNMENT_HORIZONTAL_CENTER, GUI.ALIGNMENT_VERTICAL_TOP)
 
 	-- Creating final filelist of things to download
 	local downloadList = {}
@@ -656,7 +656,7 @@ addStage(function()
 	-- Done info
 	layout:removeChildren()
 	addImage(1, 1, "Done")
-	addTitle(0x969696, localization.installed)
+	addTitle(0xFFFFFF, localization.installed)
 	addStageButton(localization.reboot).onTouch = function()
 		computer.shutdown(true)
 	end
