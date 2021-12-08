@@ -514,8 +514,6 @@ addStage(function()
 	addTitle(0xFFFFFF, localization.customize)
 
 	layout:addChild(wallpapersSwitchAndLabel)
-	layout:addChild(screensaversSwitchAndLabel)
-	layout:addChild(applicationsSwitchAndLabel)
 	layout:addChild(localizationsSwitchAndLabel)
 end)
 
