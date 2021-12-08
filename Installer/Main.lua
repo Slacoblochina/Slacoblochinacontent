@@ -21,7 +21,7 @@ local repositoryURL = "https://raw.githubusercontent.com/Slacoblochina/Slacobloc
 local installerURL = "Installer/"
 local EFIURL = "EFI/Minified.lua"
 
-local installerPath = "/Windows installer/"
+local installerPath = "/MineOS installer/"
 local installerPicturesPath = installerPath .. "Installer/Pictures/"
 local OSPath = "/"
 
@@ -141,7 +141,7 @@ local function deserialize(text)
 end
 
 -- Clearing screen
-GPUProxy.setBackground(0x2C0091)
+GPUProxy.setBackground(0x000000)
 GPUProxy.fill(1, 1, screenWidth, screenHeight, " ")
 
 -- Searching for appropriate temporary filesystem for storing libraries, images, etc
@@ -231,7 +231,7 @@ workspace:addChild(GUI.panel(1, 1, workspace.width, workspace.height, 0x1E1E1E))
 -- Main installer window
 local window = workspace:addChild(GUI.window(1, 1, 80, 24))
 window.localX, window.localY = math.ceil(workspace.width / 2 - window.width / 2), math.ceil(workspace.height / 2 - window.height / 2)
-window:addChild(GUI.panel(1, 1, window.width, window.height, 0x3C3C3C))
+window:addChild(GUI.panel(1, 1, window.width, window.height, 0xE1E1E1))
 
 -- Top menu
 local menu = workspace:addChild(GUI.menu(1, 1, workspace.width, 0xF0F0F0, 0x787878, 0x3366CC, 0xE1E1E1))
@@ -531,7 +531,7 @@ addStage(function()
 
 	-- Renaming if possible
 	if not selectedFilesystemProxy.getLabel() then
-		selectedFilesystemProxy.setLabel("Windows")
+		selectedFilesystemProxy.setLabel("MineOS HDD")
 	end
 
 	local function switchProxy(runnable)
@@ -555,17 +555,17 @@ addStage(function()
 
 	-- Flashing EEPROM
 	layout:removeChildren()
-	addImage(1, 1, "BIOS")
+	addImage(1, 1, "EEPROM")
 	addTitle(0x969696, localization.flashing)
 	workspace:draw()
 	
 	EEPROMProxy.set(request(EFIURL))
-	EEPROMProxy.setLabel("Windows EFI")
+	EEPROMProxy.setLabel("MineOS EFI")
 	EEPROMProxy.setData(selectedFilesystemProxy.address)
 
 	-- Downloading files
 	layout:removeChildren()
-	addImage(3, 2, "Загрузка")
+	addImage(3, 2, "Downloading")
 
 	local container = layout:addChild(GUI.container(1, 1, layout.width - 20, 2))
 	local progressBar = container:addChild(GUI.progressBar(1, 1, container.width, 0x66B6FF, 0xD2D2D2, 0xA5A5A5, 0, true, false))
@@ -655,7 +655,7 @@ addStage(function()
 
 	-- Done info
 	layout:removeChildren()
-	addImage(1, 1, "Успешно")
+	addImage(1, 1, "Done")
 	addTitle(0x969696, localization.installed)
 	addStageButton(localization.reboot).onTouch = function()
 		computer.shutdown(true)
