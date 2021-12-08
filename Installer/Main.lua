@@ -567,8 +567,8 @@ addStage(function()
 	layout:removeChildren()
 	addImage(3, 2, "Downloading")
 
-	local container = layout:addChild(GUI.container(1, 1, layout.width - 20, 2))
-	local progressBar = container:addChild(GUI.progressBar(1, 1, container.width, 0x66B6FF, 0xD2D2D2, 0xA5A5A5, 0, true, false))
+	local container = layout:addChild(GUI.container(1, 1, layout.width - 50, 2))
+	local progressBar = container:addChild(GUI.progressBar(1, 1, container.width, 0x228B22, 0xD2D2D2, 0xA5A5A5, 0, true, false))
 	local cyka = container:addChild(GUI.label(1, 2, container.width, 1, 0x969696, "")):setAlignment(GUI.ALIGNMENT_HORIZONTAL_CENTER, GUI.ALIGNMENT_VERTICAL_TOP)
 
 	-- Creating final filelist of things to download
