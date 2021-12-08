@@ -2424,14 +2424,14 @@ function system.updateDesktop()
 
 	desktopMenu = workspace:addChild(GUI.menu(1, 1, workspace.width, 0x0, 0x696969, 0x3366CC, 0xFFFFFF))
 	
-	local MineOSContextMenu = desktopMenu:addContextMenuItem("MineOS", 0x000000)
+	local MineOSContextMenu = desktopMenu:addContextMenuItem("ПУСК", 0x000000)
 	MineOSContextMenu:addItem(localization.aboutSystem).onTouch = function()
 		local container = GUI.addBackgroundContainer(workspace, true, true, localization.aboutSystem)
 		container.layout:removeChildren()
 		
 		local lines = {
-			"MineOS",
-			"Copyright © 2014-" .. os.date("%Y", system.getTime()),
+			"Windows EFI",
+			"Copyright © 2021-" .. os.date("%Y", system.getTime()),
 			" ",
 			"Developers:",
 			" ",
