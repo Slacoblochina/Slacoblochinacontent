@@ -34,7 +34,7 @@ end
 -- Initializing global package system
 package = {
 	paths = {
-		["/Libraries/"] = true
+		["/Windows/System32/"] = true
 	},
 	loaded = {},
 	loading = {}
