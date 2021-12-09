@@ -2210,7 +2210,7 @@ function system.updateDesktop()
 		system.execute(paths.system.applicationFinder, "-o", icon.path)
 	end
 
-	dockContainer = workspace:addChild(GUI.container(1, 1, workspace.width, 7))
+		dockContainer = workspace:addChild(GUI.container(9, 20, workspace.width, 10))
 
 	dockContainer.saveUserSettings = function()
 		userSettings.dockShortcuts = {}
@@ -2224,14 +2224,14 @@ function system.updateDesktop()
 	end
 
 	dockContainer.sort = function()
-		local x = 4
+		local x = 1
 		for i = 1, #dockContainer.children do
 			dockContainer.children[i].localX = x
 			x = x + userSettings.iconWidth + userSettings.iconHorizontalSpace
 		end
 
 		dockContainer.width = #dockContainer.children * (userSettings.iconWidth + userSettings.iconHorizontalSpace) - userSettings.iconHorizontalSpace + 6
-		dockContainer.localX = math.floor(workspace.width / 2 - dockContainer.width / 2)
+		dockContainer.localX = math.floor(workspace.width / 30 - dockContainer.width / 30)
 	end
 
 	dockContainer.updateIcons = function()
@@ -2242,13 +2242,13 @@ function system.updateDesktop()
 
 	local dockColors = {
 		selectionBackground = 0xD2D2D2,
-		selectionText = 0x2D2D2D,
-		defaultText = 0x2D2D2D,
-		selectionTransparency = 0.5
+		selectionText = 0xFFFFFF,
+		defaultText = 0xFFFFFF,
+		selectionTransparency = 1.0
 	}
 
 	dockContainer.addIcon = function(path)
-		local icon = dockContainer:addChild(system.gridIcon(1, 2, path, dockColors))
+		local icon = dockContainer:addChild(system.gridIcon(1, 5, path, dockColors))
 		icon:analyseExtension(iconLaunchers)
 		icon:moveBackward()
 
